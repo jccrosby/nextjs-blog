@@ -7,7 +7,9 @@ import styles from '../components/layout.module.css';
 import { getTodaysGames } from '../lib/games';
 import utilStyles from '../styles/utils.module.css';
 export default function Home() {
-    const { data: games, error } = useSWR('api/games/today', getTodaysGames);
+    const { data: games, error } = useSWR('api/games/today', getTodaysGames, {
+        refreshInterval: 300 * 1000,
+    });
     return (
         <div className={styles.container}>
             <Head>
