@@ -17,7 +17,6 @@ const parseDisplayData = (game) => {
 };
 
 const Game = (game) => {
-    console.log(game);
     const { gamePk, gameDate, homeTeam, awayTeam, status } = parseDisplayData(
         game,
     );
