@@ -1,20 +1,13 @@
 import Head from 'next/head';
-import Layout, { siteTitle } from '../components/layout';
-import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
+import useSWR from 'swr';
 import Date from '../components/date';
+import Layout from '../components/layout';
 import { getTodaysGames } from '../lib/games';
+import utilStyles from '../styles/utils.module.css';
 
-export const getStaticProps = async () => {
-    const games = await getTodaysGames();
-    return {
-        props: {
-            games,
-        },
-    };
-};
-
-export default function Home({ games }) {
+export default function Home() {
+    const { data: games, error } = useSWR('api/games/today', getTodaysGames);
     return (
         <Layout home>
             <Head>
